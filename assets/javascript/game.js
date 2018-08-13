@@ -16,6 +16,8 @@
         // Dom manipulation
         var domWrong = document.getElementsByClassName('wrongGuess')
         var domUnderscore = document.getElementsByClassName('underscore');
+        var domWins = document.getElementsByClassName('wins');
+        var domGuessleft = document.getElementsByClassName('guessesLeft');
 
 // MAIN
 // ============================================================
@@ -46,13 +48,15 @@
             domUnderscore[0].innerHTML = rightWord;
 
             // Decrease number of attempts by 1
-            // guessesLeft--;
+            domGuessleft[0].innerHTML = guessesLeft;
+            guessesLeft--;
 
                 // If user guesses complete word before number of attempts = 0
                 if(underscore.join('') == chosenWord) {
                 alert("You win!");
 
                 // Increase wins by 1
+                domWins[0].innerHTML = wins;
                 wins++;
 
                 // Display image and alert/message
