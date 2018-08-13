@@ -1,0 +1,59 @@
+.header {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 28px;
+}
+
+.intro {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 30px;
+}
+
+.underscore {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 50px;
+}
+
+.wins {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 30px;
+}
+
+.guessesLeft {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 30px;
+}
+
+.wrongGuess {
+    width: 800px;
+    border: solid;
+    border-color: green;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 30px;
+}
