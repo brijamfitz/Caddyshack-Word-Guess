@@ -3,8 +3,9 @@
 
         // Variables
         var golfers = ['woods', 'nicklaus', 'palmer', 'mickelson'];
-        var wins = 0;
-        var guessesLeft = 20;
+        var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var wins = "Wins: " + 1;
+        var guessesLeft = "Number of Guesses Remaining: " + 20;
         var rightWord = [];
         var wrongWord = [];
         var underscore = [];
@@ -25,6 +26,7 @@
         // Create underscores to match number of letters in chosen word
         var createUnderscore = () => {
             for (var i = 0; i < chosenWord.length; i++) {
+                // Dom manipulate - use document.getelement                
                 underscore.push('_');
             }
         return underscore;
@@ -56,8 +58,9 @@
                 alert("You win!");
 
                 // Increase wins by 1
-                domWins[0].innerHTML = wins;
                 wins++;
+                domWins[0].innerHTML = wins;
+                
 
                 // Display image and alert/message
         
@@ -98,6 +101,15 @@
 // 5. Decrease attempts - but not if repreat keystroke
 // 6. Make all dom letters uppercase, but take both lower and uppercase key inputs
 // 7. Restart game (alert after final dom manip)
+// 8. Place correct letters in correct order
+
+// ADDITIONAL NOTES
+// ============================================================
+// Use use document.eventKey to establish keypress of only keys A-Z
+// Use document.getElementsbyClass to manipulate dom instead of inner.html (this will blow away what is there)
+// Use a function/method that we've covered to create underscores when the page loads
+// Add CSS styling and golfer images
+// Reference class activities!!!
 
 
 
