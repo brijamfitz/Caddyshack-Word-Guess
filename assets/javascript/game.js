@@ -4,8 +4,8 @@
         // Variables
         var golfers = ['woods', 'nicklaus', 'palmer', 'mickelson'];
         var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-        var wins = "Wins: " + 1;
-        var guessesLeft = "Number of Guesses Remaining: " + 20;
+        var wins = 1;
+        var guessesLeft = 19;
         var rightWord = [];
         var wrongWord = [];
         var underscore = [];
@@ -50,16 +50,23 @@
             domUnderscore[0].innerHTML = rightWord;
 
             // Decrease number of attempts by 1
-            domGuessleft[0].innerHTML = guessesLeft;
-            guessesLeft--;
+            // domGuessleft[0].innerHTML = guessesLeft;
+            // guessesLeft--;
+
+            var newGuess = document.getElementById('guessDiv')
+            newGuess.textContent = guessesLeft--;
 
                 // If user guesses complete word before number of attempts = 0
                 if(underscore.join('') == chosenWord) {
                 alert("You win!");
 
                 // Increase wins by 1
-                wins++;
-                domWins[0].innerHTML = wins;
+                // wins++;
+                var newWins = document.getElementById('winsDiv');
+                newWins.textContent = wins++;
+                
+
+                // domWins[0].innerHTML = wins;
                 
 
                 // Display image and alert/message
@@ -72,11 +79,17 @@
         // If userkey !== chosen word
         else {
                 // Decrease number of attempts by 1
-                guessesLeft--;
+                var newGuess = document.getElementById('guessDiv')
+                newGuess.textContent = guessesLeft--;
 
                 // Populate letters guessed field with character
                 wrongWord.push(keyword);
-                domWrong[0].innerHTML = wrongWord;
+                // domWrong[0].innerHTML = wrongWord;
+
+                var wrongLetter = document.getElementById('lettersDiv');
+                wrongLetter.textContent = wrongWord;
+
+                
 
                 // Block user from choosing same character again
 
