@@ -10,7 +10,7 @@ var golfers = [
   "JUDGESMAILS",
   "ALCZERVIK",
   "TYWEBB",
-  "THEBISHOP",
+  "THEGOPHER",
 ];
 // Maximum number of incorrect guesses
 var maxTries = 10;

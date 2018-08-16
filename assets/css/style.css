@@ -51,21 +51,19 @@ header {
 }
 #you-win {
     padding: 20px;
-    border: solid green;
+    border: solid lightgoldenrodyellow;
     margin: 15px;
-    background-color: lightgoldenrodyellow;
-    opacity: .8;
+    background-color: green;
     font-size: 22px;
     font-weight: bold;
-    color: green;
+    color: lightgoldenrodyellow;
 }
 
 #game-over {
     padding: 20px;
-    border: solid green;
+    border: solid lightgoldenrodyellow;
     margin: 15px;
     background-color: red;
-    opacity: .8;
     font-size: 22px;
     font-weight: bold;
     color: lightgoldenrodyellow;
