@@ -1,59 +1,72 @@
-.header {
-    width: 800px;
-    border: solid;
-    border-color: green;
-    padding: 20px;
+body {
     text-align: center;
-    margin: 20px auto;
-    font-size: 28px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    background: url('../images/background-img.jpg');
 }
 
-.intro {
-    width: 800px;
-    border: solid;
-    border-color: green;
-    padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    font-size: 30px;
+header {
+    padding-top: 0px;
+    padding-right: 20px;
+    margin: 20px;
+    text-align: right;
+    text-shadow: -5px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
+    color: lightgoldenrodyellow;
+    font-size: 80px; 
+    font-style: italic;
+    font-weight: bold;
 }
 
-.underscore {
-    width: 800px;
-    border: solid;
-    border-color: green;
-    padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    font-size: 50px;
+.letters {
+    height: 125px;
 }
 
-.wins {
-    width: 800px;
-    border: solid;
-    border-color: green;
-    padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    font-size: 30px;
+.start,
+.wins,
+.character,
+.guessleft,
+.letters {
+    padding-top: 20px;
+    border: solid green;
+    margin: 15px;
+    background-color: lightgoldenrodyellow;
+    opacity: .8;
+    font-size: 22px;
 }
 
-.guessesLeft {
-    width: 800px;
-    border: solid;
-    border-color: green;
-    padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    font-size: 30px;
+#currentWord,
+#guessedLetters {
+    letter-spacing: 10px;
 }
 
-.wrongGuess {
-    width: 800px;
-    border: solid;
-    border-color: green;
+#pressKeyTryAgain, 
+#game-over-img, 
+#start-game { 
     padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    font-size: 30px;
+    border: solid green;
+    margin: 15px;
+    background-color: lightgoldenrodyellow;
+    opacity: .8;
+    font-size: 22px;
+}
+#you-win {
+    padding: 20px;
+    border: solid green;
+    margin: 15px;
+    background-color: lightgoldenrodyellow;
+    opacity: .8;
+    font-size: 22px;
+    font-weight: bold;
+    color: green;
+}
+
+#game-over {
+    padding: 20px;
+    border: solid green;
+    margin: 15px;
+    background-color: red;
+    opacity: .8;
+    font-size: 22px;
+    font-weight: bold;
+    color: lightgoldenrodyellow;
 }
