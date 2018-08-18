@@ -31,7 +31,7 @@ header {
     margin: 15px;
     background-color: lightgoldenrodyellow;
     opacity: .8;
-    font-size: 22px;
+    font-size: 16px;
 }
 
 #currentWord,
@@ -47,14 +47,14 @@ header {
     margin: 15px;
     background-color: lightgoldenrodyellow;
     opacity: .8;
-    font-size: 22px;
+    font-size: 16px;
 }
 #you-win {
     padding: 20px;
     border: solid lightgoldenrodyellow;
     margin: 15px;
     background-color: green;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: bold;
     color: lightgoldenrodyellow;
 }
@@ -64,7 +64,7 @@ header {
     border: solid lightgoldenrodyellow;
     margin: 15px;
     background-color: red;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: bold;
     color: lightgoldenrodyellow;
 }

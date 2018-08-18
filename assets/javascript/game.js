@@ -11,6 +11,7 @@ var golfers = [
   "ALCZERVIK",
   "TYWEBB",
   "THEGOPHER",
+  "THEBISHOP",
 ];
 // Maximum number of incorrect guesses
 var maxTries = 10;
@@ -51,7 +52,7 @@ function resetGame() {
     guessingWord.push("_");
   }
 
-  // Hide game over and win images/text
+  // Hide game over and win elements
   document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
   document.getElementById("game-over").style.cssText = "display: none";
   document.getElementById("you-win").style.cssText = "display: none";
@@ -59,7 +60,6 @@ function resetGame() {
   // Update the display
   updateDisplay();
 };
-
 
 // Define the update display function to reset the HTML page
 function updateDisplay() {
@@ -76,8 +76,18 @@ function updateDisplay() {
   document.getElementById("guessedLetters").innerText = guessedLetters;
 };
 
+// Define makeGuess functionality
+function makeGuess(letter) {
+  if (guessesLeft > 0) {
+    // Make sure the letter wasn't already used
+    if (guessedLetters.indexOf(letter) === -1) {
+      guessedLetters.push(letter);
+      checkGuess(letter);
+    }
+  }
+};
 
-// Creates function that takes the correct letter and finds all instances of its appearance in our chosen word string and replaces them
+// Create function that takes the correct letter and finds all instances of its appearance in our chosen word string and replaces them
 function checkGuess(letter) {
   // Creates array to store the positions of the letters in our chosen word
   var positions = [];
@@ -100,7 +110,6 @@ function checkGuess(letter) {
   }
 };
 
-
 // Check for a win!
 function checkWin() {
   if (guessingWord.indexOf("_") === -1) {
@@ -112,30 +121,15 @@ function checkWin() {
   }
 };
 
-
 // Check for a loss
 function checkLoss() {
   if (guessesLeft <= 0) {
     document.getElementById("game-over").style.cssText = "display: block";
-    document.getElementById("pressKeyTryAgain").style.cssText =
-      "display: block";
+    document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
       loseSound.play();
       gameEnd = true;
   }
 };
-
-
-// Define makeGuess functionality
-function makeGuess(letter) {
-  if (guessesLeft > 0) {
-    // Make sure the letter wasn't already used
-    if (guessedLetters.indexOf(letter) === -1) {
-      guessedLetters.push(letter);
-      checkGuess(letter);
-    }
-  }
-};
-
 
 // Event listener - captures user keypress between a-z and converts to uppercase
 document.onkeydown = function(event) {
@@ -143,7 +137,8 @@ document.onkeydown = function(event) {
   if (gameEnd) {
     resetGame();
     gameEnd = false;
-  } else {
+  } 
+  else {
     // Check and isolate that keys a-z were pressed
     if (event.keyCode >= 65 && event.keyCode <= 90) {
       makeGuess(event.key.toUpperCase());
@@ -152,6 +147,7 @@ document.onkeydown = function(event) {
       checkLoss();
     }
   }
+
 };
 
 // ISSUES
@@ -167,7 +163,7 @@ document.onkeydown = function(event) {
 
 // ADDITIONAL NOTES
 // ============================================================
-// Use use document.eventKey to establish keypress of only keys A-Z
+// Use document.eventKey to establish keypress of only keys A-Z
 // Use document.getElementsbyClass to manipulate dom instead of inner.html (this will blow away what is there)
 // Use a function/method that we've covered to create underscores when the page loads
 // Add CSS styling and golfer images
