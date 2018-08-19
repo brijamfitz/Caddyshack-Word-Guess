@@ -1,170 +1,187 @@
-// GOLFER'S HANGMAN
+// VARIABLES================================================
 
-// GLOBAL VARIABLES
-// ============================================================
-
-// Word list
-var golfers = [
+var caddyShackCharacters = [
   "CARLSPACKLER",
   "DANNYNOONAN",
   "JUDGESMAILS",
   "ALCZERVIK",
   "TYWEBB",
   "THEGOPHER",
-  "THEBISHOP",
+  "THEBISHOP"
 ];
-// Maximum number of incorrect guesses
-var maxTries = 10;
-// Incorrect guesses remaining
-var guessesLeft = 0;
-// Numer of wins accrued
+
 var wins = 0;
-// Index of current word in array
-var chosenWordIndex;
-// Stores the letters the user has already guessed
+var guessesLeft = 0;
+var maxAttempts = 10;
+var computerWord;
 var guessedLetters = [];
-// Stores the correct letters of the word we are building
-var guessingWord = [];
-// Used to tell if the game has finished
+var guessedWord = [];
+var underScore = [];
+var computerWord;
 var gameEnd = false;
 
-// Game sounds
-var winSound = new Audio("./assets/sounds/win-sound.wav");
-var loseSound = new Audio("./assets/sounds/lose-sound.wav");
+// GAME LOGIC================================================
 
+window.onload = function() {
+  
+    // choose random word from characters array
+    var computerWord = caddyShackCharacters[Math.floor(Math.random() * caddyShackCharacters.length)];
+    console.log(computerWord);
+    console.log(computerWord.length);
 
-// GAME FUNCTIONS
-// ============================================================
-
-// Reset game functionality
-function resetGame() {
-  guessesLeft = maxTries;
-
-  //Use Math.floor to select random word from 'golfers' array
-  chosenWordIndex = Math.floor(Math.random() * golfers.length);
-
-  // Clear out arrays
-  guessedLetters = [];
-  guessingWord = [];
-
-  // Build/rebuild the chosen word and clear it out
-  for (var i = 0; i < golfers[chosenWordIndex].length; i++) {
-    guessingWord.push("_");
-  }
-
-  // Hide game over and win elements
-  document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
-  document.getElementById("game-over").style.cssText = "display: none";
-  document.getElementById("you-win").style.cssText = "display: none";
-
-  // Update the display
-  updateDisplay();
-};
-
-// Define the update display function to reset the HTML page
-function updateDisplay() {
-  document.getElementById("totalWins").innerText = wins;
-
-  var guessingWordText = "";
-  for (var i = 0; i < guessingWord.length; i++) {
-    guessingWordText += guessingWord[i];
-  }
-
-  // Display the correct letters we've guessed
-  document.getElementById("currentWord").innerText = guessingWordText;
-  document.getElementById("remainingGuesses").innerText = guessesLeft;
-  document.getElementById("guessedLetters").innerText = guessedLetters;
-};
-
-// Define makeGuess functionality
-function makeGuess(letter) {
-  if (guessesLeft > 0) {
-    // Make sure the letter wasn't already used
-    if (guessedLetters.indexOf(letter) === -1) {
-      guessedLetters.push(letter);
-      checkGuess(letter);
+    // create underscores based off the computer's random word and push to dom
+    for (var i = 0; i < computerWord.length; i++) {
+    guessedWord.push("_");
     }
-  }
-};
+    console.log(guessedWord);
 
-// Create function that takes the correct letter and finds all instances of its appearance in our chosen word string and replaces them
-function checkGuess(letter) {
-  // Creates array to store the positions of the letters in our chosen word
-  var positions = [];
+    // display correct dom elements
+    document.getElementById("currentWord").innerText = guessedWord;
+    document.getElementById("remainingGuesses").innerText = maxAttempts;
+    document.getElementById("totalWins").innerText = wins;
+    document.getElementById("guessedLetters").innerText = guessedLetters;
 
-  // Loop through our chosen word and look for all cases of guessed letter, and store in array
-  for (var i = 0; i < golfers[chosenWordIndex].length; i++) {
-    if (golfers[chosenWordIndex][i] === letter) {
-      positions.push(i);
+    // hide win/loss and press any key alerts
+    document.getElementById("you-win").style.cssText = "display: none";
+    document.getElementById("game-over").style.cssText = "display: none";
+    document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
+
+
+    document.addEventListener("keypress", event => {
+    var keyword = String.fromCharCode(event.keyCode);
+
+    // If user guess is true
+    if (computerWord.indexOf(keyword.toUpperCase()) > -1) {
+      // Add to the rightWord array
+      guessedLetters.push(keyword.toUpperCase());
+
+      // Replace underscore with right letter
+      guessedWord[computerWord.indexOf(keyword.toUpperCase())] = keyword.toUpperCase();
+      document.getElementById("currentWord").innerHTML = guessedWord.join(" ");
+      document.getElementById("currentWord").innerHTML = guessedWord;
+
+      // Checks to see if user word matches guesses
+      if (guessedWord.join("") === computerWord) {
+        wins++;
+        document.getElementById("totalWins").innerHTML = wins;
+        alert("You win!");
+      }
+      } else {
+        guessedLetters.push(keyword.toUpperCase());
+        document.getElementById("guessedLetters").innerHTML = guessedLetters;
+        maxAttempts--;
+        document.getElementById("remainingGuesses").innerHTML = maxAttempts;
     }
-  }
 
-  // If there are no matching letters, decrease guesses left by one
-  if (positions.length <= 0) {
-    guessesLeft--;
-  } else {
-    // Loop through all letters and replace the underscore with the correct letter
-    for (var i = 0; i < positions.length; i++) {
-      guessingWord[positions[i]] = letter;
+    if (maxAttempts === 0) {
+      alert("You lose!");
     }
-  }
+  });
 };
 
-// Check for a win!
-function checkWin() {
-  if (guessingWord.indexOf("_") === -1) {
-    document.getElementById("you-win").style.cssText = "display: block";
-    document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
-    wins++;
-    winSound.play();
-    gameEnd = true;
-  }
-};
 
-// Check for a loss
-function checkLoss() {
-  if (guessesLeft <= 0) {
-    document.getElementById("game-over").style.cssText = "display: block";
-    document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
-      loseSound.play();
-      gameEnd = true;
-  }
-};
 
-// Event listener - captures user keypress between a-z and converts to uppercase
-document.onkeydown = function(event) {
-  // If we finish a game, drop a keystroke and reset
-  if (gameEnd) {
-    resetGame();
-    gameEnd = false;
-  } 
-  else {
-    // Check and isolate that keys a-z were pressed
-    if (event.keyCode >= 65 && event.keyCode <= 90) {
-      makeGuess(event.key.toUpperCase());
-      updateDisplay();
-      checkWin();
-      checkLoss();
-    }
-  }
 
-};
 
-// ISSUES
-// ============================================================
-// 1. Need to isolate keys A-Z
-// 2. Remove commas
-// 3. Don't overwrite field titles post-dom manipulation
-// 4. Increase wins
-// 5. Decrease attempts - but not if repreat keystroke
-// 6. Make all dom letters uppercase, but take both lower and uppercase key inputs
-// 7. Restart game (alert after final dom manip)
-// 8. Place correct letters in correct order
+// ORIGINAL APPROACH================================================
 
-// ADDITIONAL NOTES
-// ============================================================
-// Use document.eventKey to establish keypress of only keys A-Z
-// Use document.getElementsbyClass to manipulate dom instead of inner.html (this will blow away what is there)
-// Use a function/method that we've covered to create underscores when the page loads
-// Add CSS styling and golfer images
-// Reference class activities!!!
+// DEFINE FUNCTIONS FOR EACH GAME ACTION
+
+// I could not get ANY dom manipulation to work until I discovered I needed this function!!!
+
+// function for computer to choose random word from characters array and push correct number of underscores
+// function gameStart () {
+// choose random word from characters array
+//   var computerWord =
+//   caddyShackCharacters[
+//     Math.floor(Math.random() * caddyShackCharacters.length)
+//   ];
+// console.log(computerWord);
+// console.log(computerWord.length);
+
+// // create underscores based off the computer's random word and push to dom
+// for (var i = 0; i < computerWord.length; i++) {
+//   guessedWord.push("_");
+// }
+// console.log(guessedWord);
+
+// // display correct dom elements
+// document.getElementById("currentWord").innerText = guessedWord;
+// document.getElementById("remainingGuesses").innerText = maxAttempts;
+// document.getElementById("totalWins").innerText = wins;
+// document.getElementById("guessedLetters").innerText = guessedLetters;
+
+// // hide win/loss and press any key alerts
+// document.getElementById("you-win").style.cssText = "display: none";
+// document.getElementById("game-over").style.cssText = "display: none";
+// document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
+
+// } // end gameStart function
+
+// // function for when a user makes guess and isolated to a-z. also store it in guessedLetters array
+// function makeGuess () {
+//     document.onkeydown = function(event) {
+//         userGuess = event.keyCode >= 65 && event.keyCode <= 90;
+//         console.log("You pressed " + userGuess);
+//         guessedLetters.push(userGuess);
+//         console.log(guessedLetters);
+//     if (guessesLeft > 0) {
+//         checkGuess();
+//     }
+
+// }
+// } // end makeGuess function
+
+// // function to check guess - if correct, push to replace correct underscore and not decrease attempts; if incorrect, push letter to already guessed field/array and decrease attempts by 1
+// function checkGuess () {
+
+// } // end checkGuess function
+
+// // function to check for a win and increase wins count by 1
+// function checkWin () {
+// // check to see if there are no more underscores left. If true:
+// if (guessedWord.indexOf("_") === -1) {
+//     document.getElementById("you-win").style.cssText = "display: block";
+//     document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
+//     wins++;
+//     resetGame();
+// }
+
+// } // end checkWin function
+
+// // function to check for a loss
+// function checkLoss () {
+//     if (guessesLeft === 0) {
+//         document.getElementById("game-over").style.cssText = "display: block";
+//         document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
+//         resetGame();
+//     }
+// } // end checkLoss function
+
+// // function to reset game after both a win or a loss
+//   function resetGame() {
+//     // choose random word from characters array
+//     var computerWord =
+//       caddyShackCharacters[
+//         Math.floor(Math.random() * caddyShackCharacters.length)
+//       ];
+
+//     // create underscores based off the computer's random word and push to dom
+//     for (var i = 0; i < computerWord.length; i++) {
+//       guessedWord.push("_");
+//     }
+
+//     // clear out arrays
+//     var guessedLetters = [];
+//     var guessedWord = [];
+//     var underScore = [];
+//   } // end resetGame function
+
+// // I will then need to call these various functions in the correct order for the game to function properly. Most likely will need to call functions within functions
+
+// gameStart();
+// makeGuess();
+// checkGuess();
+// checkWin();
+// checkLoss();
+// resetGame();
