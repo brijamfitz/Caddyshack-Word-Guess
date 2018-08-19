@@ -24,7 +24,7 @@ I've left this original version of code (commented out) at the bottom of my curr
 As the eleventh hour approach, I mostly abandoned the "function-centric" design, and finally got my javascript code to a more functional state.
 
 But here are the main issues that remain (there are many, but these are the ones that come to mind right now):
---Repeat characters in the hangman word are only pushed in the first instance, so the only word you can complete is "ALCZERVIK" because all the characters are unique.
+--Repeat characters in the hangman word are only pushed in the first instance, so the only word you can complete is "ALCZERVIK" because all the characters are unique
 --I did not manage to reset the game when you win or lose
 --Commas remain in both the hangman word and the guessed letters field
 --User guess keys are not isolated to A-Z
