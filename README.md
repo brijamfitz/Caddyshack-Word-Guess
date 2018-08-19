@@ -15,7 +15,7 @@ I've left this version of code (commented out) at the bottom of my current javas
 
 As the eleventh hour drew closer, I mostly abandoned the "function-heavy" approach, and finally got my javascript code to a more functional state.
 
-But the main issues that remain are:
+But the main issues that remain are (there are many, but these are the ones that come to mind right now):
 
 -Repeat characters in the hangman word are only pushed in the first instance, so the only word you can complete is "ALCZERVIK" because all the characters are unique.
 -I did not manage to reset the game when you win or lose
