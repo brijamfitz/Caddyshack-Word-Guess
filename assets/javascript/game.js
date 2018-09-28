@@ -78,8 +78,8 @@ function checkGuess(letter) {
 function endGame() {
   // Update HTML
   document.getElementById('guesses-left').innerHTML = guessesLeft;
-  document.getElementById('word-to-guess').innerHTML = blanksAndSuccesses.join(' ');
-  document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(' ');
+  document.getElementById('word-to-guess').innerHTML = blanksAndSuccesses.join(' ').toLocaleUpperCase();
+  document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(' ').toUpperCase();
 
   if (lettersInWord.toString() === blanksAndSuccesses.toString()) {
     wins++;
