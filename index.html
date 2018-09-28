@@ -13,9 +13,6 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-    <!-- Javasript -->
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
-
     <title>Caddyshack Word Guess</title>
 </head>
 
@@ -40,27 +37,29 @@
                 </div>
                 <div class="character">
                     <p>Character:</p>
-                    <p id="currentWord"></p>
+                    <p id="word-to-guess"></p>
                 </div>
                 <div class="guessleft">
                     <p>Guesses Remaining:</p>
-                    <p id="remainingGuesses"></p>
+                    <p id="guesses-left"></p>
                 </div>
                 <div class="wins">
                     <p>Wins:</p>
-                    <p id="totalWins"></p>
+                    <p id="wins"></p>
                 </div>
                 <div class="letters">
                     <p>Letters Already Guessed:
                     </p>
-                    <p id="guessedLetters"></p>
+                    <p id="wrong-guesses"></p>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Optional JavaScript -->
+    <!-- Javasript -->
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
