@@ -2,6 +2,8 @@
 
 Play here: [Caddyshack Word Guess](https://brijamfitz.github.io/Caddyshack-Word-Guess/)
 
+![image](assets/images/screenshot-wordguess.png)
+
 This is a word guess game based on the classic characters from the movie Caddyshack!
 
 This game allows the user to guess letters from a randomly selected word &mdash; or in this case, character from the movie.
@@ -30,4 +32,4 @@ Designed and maintained by Brian Fitzgerald
 
 Email: brianjfitzgerald@gmail.com
 
-&#169; 2018
+Copyright &#169; 2018
